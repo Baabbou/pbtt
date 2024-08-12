@@ -55,17 +55,17 @@ if __name__ == '__main__':
     try:
         if args.json:
             input = json.loads(input.replace("'", '"'))
-            output1 = json_string(input)
-            output2 = string_xml(output1)
+            output1 = f"application/x-www-form-urlencoded :\n\t{json_string(input)}"
+            output2 = f"text/xml :\n\t{string_xml(output1)}"
         elif args.xml:
             input = input.replace('<?xml version="1.0" encoding="UTF-8"?>', "")
             input = f"<root>{input}</root>"
             dict_input = xmltodict.parse(input).get("root")
-            output1 = json_string(dict_input)
-            output2 = str(dict_input).replace("'", '"')
+            output1 = f"application/x-www-form-urlencoded :\n\t{json_string(dict_input)}"
+            output2 =  "application/json :\n\t" + str(dict_input).replace("'", '"')
         else:
-            output1 = string_json(input)
-            output2 = string_xml(input)
+            output1 = f"application/json :\n\t{string_json(input)}"
+            output2 = f"text/xml :\n\t{string_xml(input)}"
     except Exception as e:
         print("Error: Did you precise the right data type ?")
         exit(1)

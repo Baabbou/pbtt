@@ -24,24 +24,30 @@ sudo scripts/uninstall.sh
 
 ```bash
 pbtt '?blabla=truc&machin=test'
-> {"blabla": "truc", "machin": "test"}
-> <?xml version="1.0" encoding="UTF-8"?><blabla>truc</blabla><machin>test</machin>
+> application/json :
+>         {"blabla": "truc", "machin": "test"}
+> text/xml :
+>         <?xml version="1.0" encoding="UTF-8"?><blabla>truc</blabla><machin>test</machin>
 ```
 
 ## XML as input
 
 ```bash
 pbtt '<?xml version="1.0" encoding="UTF-8"?><blabla>truc</blabla><machin>test</machin>' -x
-> ?blabla=truc&machin=test
-> {"blabla": "truc", "machin": "test"}
+> application/x-www-form-urlencoded :
+>         ?blabla=truc&machin=test
+> application/json :
+>         {"blabla": "truc", "machin": "test"}
 ```
 
 ## Json as input
 
 ```bash
 pbtt '{"blabla": "truc", "machin": "test"}' -j
-> ?blabla=truc&machin=test
-> <?xml version="1.0" encoding="UTF-8"?><blabla>truc</blabla><machin>test</machin>
+> application/x-www-form-urlencoded :
+>         ?blabla=truc&machin=test
+> text/xml :
+>         <?xml version="1.0" encoding="UTF-8"?><application/x-www-form-urlencoded :?blabla>truc</application/x-www-form-urlencoded :?blabla><machin>test</machin>
 ```
 
 # Contact
